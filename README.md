@@ -17,7 +17,6 @@
 
 		The response is a HTTPCODE 200.
 
-
 - HTTP-Post to ~/stock/price to get the prices of all the stocks if the body of the request is null, empty or an empty array.
 To get only the stock of some specific tickers, the tickers of the stocks must be added in the body as a array of strings.
 
@@ -50,7 +49,8 @@ The **Exchange** model will be used across the API. Its DateTimeOfExcecution is 
 
 ## System Design
 ![enter image description here](https://github.com/raphschryn/Tyl-LondonStockAPI/assets/156947212/33ef71c9-3ae9-4af8-b962-31f6ad777fd1)
-For simplicity for this project, the Exchange database is a file.
+For simplicity for this project, the Exchange database is a file 'Exhanges.txt'.
+The file can be found in ~\Tyl-LondonStockAPI\API\bin\Debug\net8.0 when debugging the application.
 Each new Exchange item is added as a line in JSON following the Exchange model.
 As disclosed above, a dummy Broker is generated instead of being fetched from the database.
 Assuming the complex and fast paste price calculation is done externally, that is why the stocks and theirs prices are requested through an external SDK. For this project, 4 hard-coded stocks (TYL, MSFT, TSLA, AAPL) are given a random price by a fake internal SDK and returned to the Client.
