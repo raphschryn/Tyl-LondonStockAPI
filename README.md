@@ -40,7 +40,7 @@ To get only the stock of some specific tickers, the tickers of the stocks must b
 		  ...
 		]
 
-## Data models
+## Data model
 ![enter image description here](https://github.com/raphschryn/Tyl-LondonStockAPI/assets/156947212/1e1d40da-4bea-499c-a2bd-b046b1fe5b66)
 **ExternalExchange** being the model receive from the Client through the *~/exchange/add* endpoint.
 It is then mapped to a **Exchange** object after fetching the Broker from the database using the ExternalExchange.BrokerId.
@@ -60,11 +60,17 @@ Assuming the complex and fast paste price calculation is done externally, that i
 ### Stock Price functionality:
 The Client must be authenticated and authorised to use this functionality.
 If the Client is a professional trader, 2 sets of HTTP requests (one to our API, then one to the SDK) to get the prices might be too slow and an alternative feature must be developed.
+A caching system also ticks all the boxes to be used with this functionality, depending if the Client needs the very latest price from every requests. 
 
 ### Add Exchange functionality:
 The Client must be authenticated and authorised to use this functionality.
 If the Client is not a trusted authority, the BrokerId would be used inside the request Claim instead of letter the Client freely sending it to us. This would make sure the Client is allowed to use that BrokerId and has not fiddled with it.
 If the integrity of the data is important, the price of the Stock could be verified against the External SDK, or fetched directly from it instead of letting the Client notifying of the price. *(But tricky as the prices fluctuate very fast)*
+
+The Client might constantly be calling the endpoint to add a single Exchange to the system and could overwhelm the API.
+Allowing the Client to send a list of Exchanges (and setup the DateOfExcution himself) would diminish the number of requests drastically.
+
+If the Broker information is not needed to process the Exchange, it shouldn't be fetch from the database.
 
 The amount of Exchanges done per day in the London stock market is immense, the type of the database must be chosen very carefully. As Exchanges are very well structured, a SQL database would be the best fit.
 If the Exchange database is not only used for archiving, but the data need to be retrieve, that would be the bottleneck.
