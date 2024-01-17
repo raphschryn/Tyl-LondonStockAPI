@@ -1,12 +1,8 @@
 ﻿namespace Tyl.LondonStock.Shared.Models
 {
-    public class ExternalExchange
+    public class ExternalExchange : BaseExchange
     {
         public Guid BrokerId { get; set; }
-
-        public Stock Stock { get; set; } = new Stock();
-
-        public decimal NumberOrShares { get; set; }
 
         public override bool Equals(object? obj)
         {

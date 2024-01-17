@@ -1,14 +1,10 @@
 ﻿namespace Tyl.LondonStock.Shared.Models
 {
-    public class Exchange
+    public class Exchange : BaseExchange
     {
         public Guid Id { get; set; }
 
         public Broker Broker { get; set; } = new Broker();    
-
-        public Stock Stock { get; set; } = new Stock();
-
-        public decimal NumberOrShares { get; set; }
 
         public DateTimeOffset DateTimeOfExecution { get; set; } = DateTimeOffset.Now;
 
