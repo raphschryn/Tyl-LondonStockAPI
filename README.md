@@ -1,4 +1,5 @@
 
+
 # Tyl-LondonStockAPI
 
 ## How to test with Swagger:
@@ -41,6 +42,7 @@ To get only the stock of some specific tickers, the tickers of the stocks must b
 
 ## Data model
 ![enter image description here](https://github.com/raphschryn/Tyl-LondonStockAPI/assets/156947212/1e1d40da-4bea-499c-a2bd-b046b1fe5b66)
+
 **ExternalExchange** being the model receive from the Client through the *~/exchange/add* endpoint.
 It is then mapped to a **Exchange** object after fetching the Broker from the database using the ExternalExchange.BrokerId.
 *(Ideally, for the scope of this project, a dummy Broker is generated using ExternalExchange.BrokerId)*.
@@ -49,6 +51,7 @@ The **Exchange** model will be used across the API. Its DateTimeOfExcecution is 
 
 ## System Design
 ![enter image description here](https://github.com/raphschryn/Tyl-LondonStockAPI/assets/156947212/33ef71c9-3ae9-4af8-b962-31f6ad777fd1)
+
 For simplicity for this project, the Exchange database is a file 'Exhanges.txt'.
 The file can be found in ~\Tyl-LondonStockAPI\API\bin\Debug\net8.0 when debugging the application.
 Each new Exchange item is added as a line in JSON following the Exchange model.
